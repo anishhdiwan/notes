@@ -3,7 +3,7 @@ layout: post
 category: example
 ---
 
-Lorem ipsum[^1] dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus. [Ho, et al. (2020), Chi, et al. (2023)]
+Lorem ipsum[^1] dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus.
 
 # Sample heading 1
 ## Sample heading 2
@@ -75,8 +75,6 @@ Now a table:
 
 Logo of *no style, please!* theme[^4]
 
-
-
 ---
 {: data-content="footnotes"}
 
@@ -84,11 +82,3 @@ Logo of *no style, please!* theme[^4]
 [^2]: hey there, i'm using no style please!
 [^3]: this is another footnote.
 [^4]: this is a very very long footnote to test if a very very long footnote brings some problems or not. I strongly hope that there are no problems but you know sometimes problems arise from nowhere.
-
-
-
-### References
-
-Chi, Cheng and Xu, Zhenjia and Feng, Siyuan and Cousineau, Eric and Du, Yilun and Burchfiel, Benjamin and Tedrake, Russ and Song, Shuran (2023). Diffusion policy: Visuomotor policy learning via action diffusion. The International Journal of Robotics Research
-
-Ho, Jonathan and Jain, Ajay and Abbeel, Pieter (2020). Denoising diffusion probabilistic models. Advances in neural information processing systems
