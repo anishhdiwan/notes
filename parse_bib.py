@@ -93,7 +93,7 @@ def generate_references(bib_entries, citation_style='apa'):
         formatted_reference = f"{author} ({year}). {title}. {journal if journal != 'Unknown Journal' else ''}"
         references.append(formatted_reference)
 
-    return "\n\n### References\n\n" + "\n\n".join(references)  # Added newline between references
+    return "\n\n#### References\n\n" + "\n\n".join(references)  # Added newline between references
 
 # Main function to process the markdown and BibTeX files
 def process_markdown_with_bib(markdown_file, bib_file, citation_style='apa', output_file='output.md'):
@@ -121,7 +121,7 @@ def process_markdown_with_bib(markdown_file, bib_file, citation_style='apa', out
 
 
 # Example usage
-file_name = '2020-07-07-overview-post.md'
+file_name = '2023-12-07-energy-based-models-SM.md'
 markdown_file = os.path.join('_posts', file_name)  # Input markdown file
 bib_file_name = os.path.splitext(file_name)[0] + '.bib'   # BibTeX file with citation entries
 bib_file = os.path.join('_posts/_bibliography', bib_file_name)
