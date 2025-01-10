@@ -10,7 +10,7 @@ Generative modelling is a class of machine learning methods that aims to generat
 Say you are a cat lover and are trying to generate new images of cats to fuel your never-ending need to see a new cat every day. First, let's highlight a rather big assumption that you make about pictures of cats. You assume that in the space of all possible images (of size $$N \times N$$) $$\mathbb{R}^{N^2}$$ [^1], all images of cats lie in some unknown subspace $$X$$ and there is some probability density function that describes the probability of sampling an image vector $$x \in \mathbb{R}^{N^2}$$ in $$X$$. Generative models can generate new pictures of cats by essentially learning this probability density function and then sampling image vectors that have high probability of coming from $$X$$. 
 
 <div style="text-align: center;">
-    <img src="/assets/cat_space.png" alt="Illustration of the space of cat images" style="width: 25vw; min-width: 330px; display: block; margin: auto;">
+    <img src="{{ site.baseurl }}/assets/cat_space.png" alt="Illustration of the space of cat images" style="width: 25vw; min-width: 330px; display: block; margin: auto;">
     <p style="text-align: center; font-size: 0.9em;"><em>The -- 2D projection of the -- subspace of cat images where each point is a vector representing a cat picture. The probability density is implicit in the density of the actual data in the space (regions with more samples together are high probability and the white space is essentially zero probability).</em></p>
 </div>
 
@@ -23,7 +23,7 @@ The [Boltzmann distribution](https://en.wikipedia.org/wiki/Boltzmann_distributio
 Say I have a balloon filled with atoms of some atomic gas (Helium maybe) at temperature $$K$$. I know that there are $$N$$ atoms in the balloon. The temperature of a gas in a volume is the average kinetic energy of all atoms in that volume [^2]. Knowing that the average energy is $$K$$, I want to know what is the energy of each atom in this balloon. This might be very very difficult to compute exactly. What if I pose this problem as what is the probability that a certain atom in this balloon has energy $$E(He)$$. This is much easier to compute and the probability distribution of the energy of atoms in a gas is given by the Maxwell-Boltzmann Distribution. 
 
 <div style="text-align: center;">
-    <img src="/assets/boltzmann_example.png" alt="Boltzmann distribution curve" style="width: 15vw; min-width: 150px; display: block; margin: auto;">
+    <img src="{{ site.baseurl }}/assets/boltzmann_example.png" alt="Boltzmann distribution curve" style="width: 15vw; min-width: 150px; display: block; margin: auto;">
     <p style="text-align: center; font-size: 0.9em;"><em>Boltzmann distribution for the energy of Helium atoms.</em></p>
 </div>
 
@@ -34,7 +34,7 @@ $$P(X = x) = \frac{e^{-E(x)}}{Z}$$
 Here, $$P$$ is the probability that some vector $$x \in X$$ has energy $$E(x)$$. $$Z$$ is a normalising factor that makes sure that the probability $$P$$ of all such samples $$x$$ adds up to 1 ($$\int P(x) dx = 1$$). 
 
 <div style="text-align: center;">
-    <img src="/assets/ebm_contour.png" alt="EBM in 2D" style="width: 15vw; min-width: 150px; display: block; margin: auto;">
+    <img src="{{ site.baseurl }}/assets/ebm_contour.png" alt="EBM in 2D" style="width: 15vw; min-width: 150px; display: block; margin: auto;">
     <p style="text-align: center; font-size: 0.9em;"><em>Energy function for some hypothetical 2D projection of a space of cat images.</em></p>
 </div>
 
@@ -68,7 +68,7 @@ $$\begin{eqnarray}
 To provide further intuition behind the score function, consider a single data sample from the cat distribution that has some amount of noise added to it. The noisy sample is shown below in green and its original position in the data distribution is shown in black. Further, the underlying energy function is shown as a contour in the background with light colours indicating low energy. As shown above, the gradient of the log probability of the sample with respect to the sample is the negative gradient of the energy of the sample with respect to the sample. This gradient is the direction of the steepest increase in the log probability which is also the direction of the steepest descent of the sample's energy. In essence, the score is a denoising vector -- which is the gradient of the log probability of the sample which is also the negative gradient of energy of the sample (w.r.t the sample) --  that returns the noisy sample back to its position in the distribution.
 
 <div style="text-align: center;">
-    <img src="/assets/score_fn.png" alt="Illustration of the score function" style="width: 40vw; min-width: 330px; display: block; margin: auto;">
+    <img src="{{ site.baseurl }}/assets/score_fn.png" alt="Illustration of the score function" style="width: 40vw; min-width: 330px; display: block; margin: auto;">
     <p style="text-align: center; font-size: 0.9em;"><em>Score function in the cat space.</em></p>
 </div>
 
