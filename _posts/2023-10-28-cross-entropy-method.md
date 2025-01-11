@@ -7,13 +7,13 @@ title: Cross Entropy Method
 The cross-entropy method (CEM) [Kobilarov, (2012), Botev, et al. (2013)] is one of the standard tools seen in model-based RL literature to solve estimation and optimization problems. It is fundamentally based on iteratively minimising the Kullback-Leibler divergence (or cross-entropy loss) between time-evolving versions of a distribution to obtain a final distribution such that there is a high probability of sampling high utility samples (utility is another word for cost or whatever objective is being maximised). 
 
 
-An example use case could be as follows. Given the dynamics and reward model in a reinforcement learning task, CEM (or more precisely, "CEM for optimization" as CEM can also be used for estimation — more on that later) can be used in the planning step to obtain a "good" action distribution for the current state. Then, something like MPC could be used to enact the first action from this sampling distribution (and then iteratively move ahead). The process would involve:
+An example use case could be as follows. Given the dynamics and reward model in a reinforcement learning task, CEM (or more precisely, "CEM for optimization" as CEM can also be used for estimation) can be used in the planning step to obtain a "good" action distribution for the current state. Here's an algorithm for this.
 
-- In the simulation step, sampling a sequence of action vectors of size equal to the horizon
-- Evaluating a combined reward signal for this action sequence from the current state
-- Updating the sampling distribution such that the updated distribution offers a better expected value of the objective
-- Repeating, for some number of simulation steps
-- In the real world, sampling a sequence of actions from the final CEM distribution for this state and using some variant of MPC as usual. Then repeating this for as long as necessary
+- In the simulation step, sample a sequence of action vectors (say of length = horizon)
+- Evaluate a combined reward signal for this action sequence from the current state
+- Update the sampling distribution such that the updated distribution offers a better expected value of the objective
+- Repeat for some number of simulation steps
+- In the real world, sample a sequence of actions from the final CEM distribution for this state
 
 ### Formalisation
 

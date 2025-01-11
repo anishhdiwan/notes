@@ -4,7 +4,7 @@ email: none # email of site's author
 url: https://anishhdiwan.github.io/notes # root address of the site. Forked from: https://riggraz.dev/
 baseurl: "" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
 description: > # description of the site (multiple lines allowed)
-  Written tutorials, lecture notes, and misc. explainers (mostly related to robotics and machine learning).
+  Written tutorials, lecture notes, and misc. explainers (mostly related to robotics and machine learning)
 
 permalink: /:slug.html
 

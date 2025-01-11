@@ -5,7 +5,7 @@ entries:
   - title: about me
     url: https://www.anishdiwan.com/
     entries:
-      - title: robotics & ML researcher
+      - title: robotics & ML engineer
       - title: writer of stuff online
       # - title: website
       #   url: https://www.anishdiwan.com/
@@ -13,7 +13,7 @@ entries:
 
   - title: posts
     post_list:
-      limit: 2
+      limit: 5
       show_more: true
       show_more_text: archive...
       show_more_url: archive.html
