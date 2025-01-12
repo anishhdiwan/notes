@@ -16,7 +16,13 @@ entries:
       limit: 5
       show_more: true
       show_more_text: archive...
-      show_more_url: archive.html
+      show_more_url: archive.html 
+
+  - title: upcoming
+    entries:
+      - title: generative frameworks for robot imitation learning (adversarial & score-based)
+      - title: monte-carlo planning in partially observable MDPs
+
 
   # - title: posts by category
   #   post_list:

@@ -1,7 +1,7 @@
 ---
 layout: post
 category: tutorial
-title: Energy-Based Models, Score Matching & Diffusion
+title: Energy-Based Models & Score Matching
 ---
 
 Generative modelling is a class of machine learning methods that aims to generate new (previously unseen) information by learning the underlying distribution of some given unlabelled data. The core underlying ideas are illustrated by the following informal example.

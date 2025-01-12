@@ -18,7 +18,7 @@ Formally, the policy gradient theorem states that:
 - Defining the performance measure to be maximised $$J(\theta)$$ as the value of this start state  $$v_{\pi_{\theta}}(s_0)$$
 - **It can be shown that the gradient of the performance measure is proportional to the gradient of the policy**
 
-$$\nabla_{\theta} J(\theta) \: \alpha \: \sum_{s} \mu(s) \sum_{a} q_{\pi}(s,a) \nabla_{\theta} \: \pi_{\theta}(a|s)$$
+$$\nabla_{\theta} J(\theta) \: \propto \: \sum_{s} \mu(s) \sum_{a} q_{\pi}(s,a) \nabla_{\theta} \: \pi_{\theta}(a|s)$$
 
 Where $$\mu$$ is the occupancy measure given the policy and $$q_{\pi}$$ is the action value function. Under this theorem, this gradient can now be defined in a form that is suitable for computation by experience (given an approximate action value $$q_{\pi}$$).
 
@@ -74,7 +74,7 @@ $$
 \begin{align}
 &= \sum_{s'} \eta(s') \sum_{s} \frac{\eta(s)}{\sum_{s'}\eta(s')} \sum_{a} \nabla \pi(a|s) q_{\pi}(s, a) \\
 &= \sum_{s'} \eta(s') \sum_{s} \mu(s) \sum_{a} \nabla \pi(a|s) q_{\pi}(s, a) \\
-\nabla J(\theta) \: &\alpha \: \sum_{s} \mu(s) \sum_{a} \nabla \pi(a|s) q_{\pi}(s, a)
+\nabla J(\theta) \: &\propto \: \sum_{s} \mu(s) \sum_{a} \nabla \pi(a|s) q_{\pi}(s, a)
 \end{align}
 $$
 
@@ -83,11 +83,11 @@ $$
 
 Having obtained the policy gradient theorem, how can we use this result to obtain a learning algorithm? Here we briefly look at REINFORCE [Williams, (1992)] as an exercise to understand how this result can be converted into an algorithm. 
 
-Notice that in the final result, we sum over all possible states in the MDP and then multiply the inner terms with the likelihood of those states $$\mu(s)$$. This summation and multiplication is *not* done explicitly under $$\pi$$. However, we can now change this summation and multiplication into an expectation by computing the expectation of the inner terms *explicitly under $$\pi$$*. Meaning that $$\sum_{s} \mu(s)$$ turns into $$\mathbb{E}_{\pi} [ ... ]$$ where the states and actions in the expectation are obtained under the policy $$\pi$$ (where previously only the value function was computed under $$\pi$$). Doing this naturally also turns the proportionality in the result to an equality. Hence an unconditioned the sum over the occupancy measure turns into an expectation over the states obtained by rolling out the policy. This is a minor nuance but I think it's one that is often omitted. In this following lines, we replace $$s$$ and $$a$$ with $$S_t \sim \pi$$ and $$A_t \sim \pi$$.
+Notice that in the final result, we sum over all possible states in the MDP and then multiply the inner terms with the likelihood of those states $$\mu(s)$$. This summation and multiplication is *not* done explicitly under $$\pi$$. However, we can now change this summation and multiplication into an expectation by computing the expectation of the inner terms *explicitly under $$\pi$$*. Meaning that $$\sum_{s} \mu(s)$$ turns into $$\mathbb{E}_{\pi} [ ... ]$$ where the states and actions in the expectation are obtained under the policy $$\pi$$ (where previously only the value function was computed under $$\pi$$). Doing this naturally also turns the proportionality in the result to an equality. Hence an unconditioned the sum over the occupancy measure turns into an expectation over the states obtained by rolling out the policy. This is a minor nuance but I think it's one that is often omitted. In the following lines, we replace $$s$$ and $$a$$ with $$S_t \sim \pi$$ and $$A_t \sim \pi$$.
 
 $$
 \begin{align}
-\nabla J(\theta) \: &\alpha \: \sum_{s} \mu(s) \sum_{a} \nabla \pi_{\theta}(s,a) q_{\pi_{\theta}}(s, a) \\
+\nabla J(\theta) \: &\propto \: \sum_{s} \mu(s) \sum_{a} \nabla \pi_{\theta}(s,a) q_{\pi_{\theta}}(s, a) \\
 &= \mathbb{E}_{\pi_{\theta}} [ \sum_{a} \nabla \pi_{\theta}(a|S_t) q_{\pi_{\theta}}(a, S_t) ]
 \end{align}
 $$
@@ -100,7 +100,7 @@ Rewriting the sum over actions as an expectation (and replacing $$a$$ with $$A_t
 
 $$= \mathbb{E}_{\pi_{\theta}} [\frac{q_{\pi_{\theta}}(A_t, S_t)}{\pi_{\theta}(A_t|S_t)} \nabla \pi_{\theta}(A_t|S_t) ]$$
 
-Now the expectation over the return ($$G_t$$) from a state and action is just the action value by definition ($$\mathbb{E}_{\pi_{\theta}} [G_t \vert S_t, A_t]$$). Hence, we can also replace $$q_{\pi_{\theta}}(A_t, S_t)$$ by $$G_t$$.
+The expectation over the return ($$G_t$$) from a state and action is just the action value by definition ($$\mathbb{E}_{\pi_{\theta}} [G_t \vert S_t, A_t]$$). Hence, we can also replace $$q_{\pi_{\theta}}(A_t, S_t)$$ by $$G_t$$.
 
 $$= \mathbb{E}_{\pi_{\theta}} [\frac{G_t}{\pi_{\theta}(A_t|S_t)} \nabla \pi_{\theta}(A_t|S_t) ]$$
 
