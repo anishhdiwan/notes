@@ -2,6 +2,9 @@
 layout: post
 category: paper-notes
 title: Cross Entropy Method
+description: The cross-entropy method (CEM) [Kobilarov, (2012), Botev, et al. (2013)] is one of the standard tools seen in model-based RL literature to solve estimation and optimization problems. It is fundamentally based on iteratively minimising the Kullback-Leibler divergence (or cross-entropy loss) between time-evolving versions of a distribution ...
+# image: /assets/images/post-thumbnail.jpg # URL to the post's featured image
+# image_alt: "A description of the image for accessibility purposes." # Alt text for the image
 ---
 
 The cross-entropy method (CEM) [Kobilarov, (2012), Botev, et al. (2013)] is one of the standard tools seen in model-based RL literature to solve estimation and optimization problems. It is fundamentally based on iteratively minimising the Kullback-Leibler divergence (or cross-entropy loss) between time-evolving versions of a distribution to obtain a final distribution such that there is a high probability of sampling high utility samples (utility is another word for cost or whatever objective is being maximised). 

@@ -1,7 +1,7 @@
 title: anish's notes # name of the site
 author: Anish Diwan # name of site's author
 email: none # email of site's author
-url: https://anishhdiwan.github.io/notes # root address of the site. Forked from: https://riggraz.dev/
+url: https://anishhdiwan.github.io # root address of the site. Forked from: https://riggraz.dev/
 baseurl: "" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
 description: > # description of the site (multiple lines allowed)
   Written tutorials, lecture notes, and misc. explainers (mostly related to robotics and machine learning)
@@ -19,6 +19,10 @@ theme_config:
   date_format: "%d-%m-%Y" # customize how date is formatted
   show_description: true # show blog description in home page
   lowercase_titles: true # show titles in lowercase in lists
+
+# feed:
+#   icon: /logo.png
+#   logo: /logo.png
 
 sass:
   style: compressed

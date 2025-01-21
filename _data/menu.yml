@@ -18,10 +18,13 @@ entries:
       show_more_text: archive...
       show_more_url: archive.html 
 
+  - title: rss
+    url: feed.xml
+
   - title: upcoming
     entries:
-      - title: generative frameworks for robot imitation learning (adversarial & score-based)
       - title: monte-carlo planning in partially observable MDPs
+      - title: popular optimal control techniques
 
 
   # - title: posts by category
@@ -31,9 +34,6 @@ entries:
   #     limit: 1
   #     show_more_text: See more posts...
   #     show_more_url: example2-archive.html
-
-  # - title: rss
-  #   url: feed.xml
   
   # - title: another list
   #   entries:

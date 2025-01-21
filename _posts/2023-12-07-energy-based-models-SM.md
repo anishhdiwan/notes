@@ -2,6 +2,8 @@
 layout: post
 category: tutorial
 title: Energy-Based Models & Score Matching
+description: Generative modelling is a class of machine learning methods that aims to generate new (previously unseen) information by learning the underlying distribution of some given unlabelled data. The core underlying ideas are illustrated by the following informal example ...
+image: /assets/cat_space.png # URL to the post's featured image
 ---
 
 Generative modelling is a class of machine learning methods that aims to generate new (previously unseen) information by learning the underlying distribution of some given unlabelled data. The core underlying ideas are illustrated by the following informal example.
