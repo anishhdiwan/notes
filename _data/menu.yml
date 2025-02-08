@@ -3,7 +3,7 @@
 
 entries:
   - title: about me
-    url: https://www.anishdiwan.com/
+    url: https://anishhdiwan.github.io/
     entries:
       - title: robotics & ML engineer
       - title: writer of stuff online
@@ -23,7 +23,6 @@ entries:
 
   - title: upcoming
     entries:
-      - title: monte-carlo planning in partially observable MDPs
       - title: popular optimal control techniques
 
 
