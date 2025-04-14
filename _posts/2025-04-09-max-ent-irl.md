@@ -52,7 +52,7 @@ In this section, we will walk through the procedure to solve the optimisation pr
 
 - Formulate the Lagrangian for the problem (such that that maximising the constrained optimisation problem is equivalent to maximising the min of the Lagrangian).
 - Compute the dual optimisation problem (such that $$\min \max \text{dual problem}$$ is at least an upper bound for $$\max \min \text{Lagrangian}$$ -- in this case there is strong duality so instead $$\min \max \text{dual problem} \Leftrightarrow \max \min \text{Lagrangian}$$).
-- Solve the dual problem by setting $$\nabla \text{Lagrangian}$$ and $$\nabla \text{dual}$$ to zero. We will also see how reinforcement learning patterns emerge from this procedure and how dual ascent can be seen as RL + Reward Learning.
+- Solve the dual problem by setting $$\nabla \text{Lagrangian}$$ to zero and update the reward using $$\nabla \text{dual}$$. We will also see how reinforcement learning emerges from this procedure.
 
 The Lagrangian is defined by including the constraints into the objective and weighting them by a Lagrange multiplier.
 
