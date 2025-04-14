@@ -6,4 +6,4 @@ layout: home
 <hr data-content="errata">
 If you notice any typos/technical errors or have suggestions for new posts, please feel free to notify me at : 
 <br>
-<span style="background-color: #E5E4E2">anishhdiwan [at] gmail [dot] com</span>
+<span style="background-color: #E5E4E2">anish.diwan [at] robot-learning [dot] de</span>
