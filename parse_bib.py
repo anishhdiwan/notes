@@ -121,7 +121,7 @@ def process_markdown_with_bib(markdown_file, bib_file, citation_style='apa', out
 
 
 # Example usage
-file_name = '2025-02-08-POMCP.md'
+file_name = '2025-04-09-max-ent-irl.md'
 markdown_file = os.path.join('_posts', file_name)  # Input markdown file
 bib_file_name = os.path.splitext(file_name)[0] + '.bib'   # BibTeX file with citation entries
 bib_file = os.path.join('_posts/_bibliography', bib_file_name)
