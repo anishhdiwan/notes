@@ -5,25 +5,26 @@ entries:
   - title: about me
     url: https://anishhdiwan.github.io/
     entries:
-      - title: robotics & ML engineer
+      - title: robotics & ML researcher
       - title: writer of stuff online
       # - title: website
       #   url: https://www.anishdiwan.com/
       # - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
 
-  - title: posts
+  - title: latest posts (<a href='archive.html'>all posts</a>)
     post_list:
       limit: 6
       show_more: true
-      show_more_text: archive...
-      show_more_url: archive.html 
+      show_more_text: archive
+      show_more_url: archive.html
+      exclude_category: unpublished
 
   - title: rss
     url: feed.xml
 
-  - title: upcoming
-    entries:
-      - title: popular optimal control techniques
+  # - title: upcoming
+  #   entries:
+  #     - title: popular optimal control techniques
 
 
   # - title: posts by category

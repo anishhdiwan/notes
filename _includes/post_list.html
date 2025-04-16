@@ -4,6 +4,10 @@
   {%-assign posts = site.posts-%}
 {%-endif-%}
 
+{%- if include.exclude_category -%}
+  {%- assign posts = posts | where_exp:"post", "post.category != include.exclude_category" -%}
+{%- endif -%}
+
 {%-if include.limit and posts.size > include.limit-%}
   {%-assign limit_exceeded = true-%}
 {%-else-%}
