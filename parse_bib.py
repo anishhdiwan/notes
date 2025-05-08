@@ -30,7 +30,9 @@ def replace_citations(markdown_content, bib_entries, citation_style='apa'):
     tree = etree.fromstring(style_content)
     
     # Regular expression to match in-line citations (e.g., [@author2020])
-    citation_pattern = r"\[@([\w\d, ]+)\]"
+    # citation_pattern = r"\[@([\w\d, ]+)\]"
+    citation_pattern = r"\[@([^\]]+)\]"
+
 
     def citation_replacer(match):
         citation_keys = match.group(1).split(",")  # Split on commas for multiple citations
@@ -39,6 +41,7 @@ def replace_citations(markdown_content, bib_entries, citation_style='apa'):
         # Iterate over each citation key
         for citation_key in citation_keys:
             citation_key = citation_key.strip()  # Remove extra spaces
+            citation_key = citation_key.strip().lstrip('@')
             entry = next((entry for entry in bib_entries if entry['ID'] == citation_key), None)
             if entry:
                 # Extract authors and year
@@ -121,7 +124,7 @@ def process_markdown_with_bib(markdown_file, bib_file, citation_style='apa', out
 
 
 # Example usage
-file_name = '2025-04-09-max-ent-irl.md'
+file_name = '2025-04-16-max-ent-rl.md'
 markdown_file = os.path.join('_posts', file_name)  # Input markdown file
 bib_file_name = os.path.splitext(file_name)[0] + '.bib'   # BibTeX file with citation entries
 bib_file = os.path.join('_posts/_bibliography', bib_file_name)
