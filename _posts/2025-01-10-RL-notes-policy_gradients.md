@@ -4,6 +4,7 @@ category: lecture-notes
 title: Policy Gradient Theorem
 description: The policy gradient theorem [Sutton, et al. (1999)] is a foundational result that relates the gradient of the agent's performance (the maximisation objective) to the gradient of its current policy. This means that given a parametric policy, an optimisation problem can then be formulated to maximise the agent's performance by changing the policy parameters ...
 image: /assets/reinforce_algo_sutton.png # URL to the post's featured image
+featured: true
 ---
 
 ###### Lecture notes from some of my coursework on reinforcement learning. I also highly recommend [Russell, and Norvig, (2016), Sutton, (2018)].

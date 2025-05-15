@@ -11,16 +11,16 @@ entries:
       #   url: https://www.anishdiwan.com/
       # - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
 
-  - title: latest posts (<a href='archive.html'>all posts</a>)
+  - title: rss
+    url: feed.xml
+
+  - title: all posts # (<a href='archive.html'>all posts</a>)
     post_list:
-      limit: 6
-      show_more: true
+      # limit: 6
+      # show_more: true
       show_more_text: archive
       show_more_url: archive.html
       exclude_category: unpublished
-
-  - title: rss
-    url: feed.xml
 
   # - title: upcoming
   #   entries:
