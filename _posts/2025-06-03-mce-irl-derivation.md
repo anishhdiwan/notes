@@ -1,15 +1,15 @@
 ---
 layout: post
 category: tutorial
-title: MCE-IRL Derivation
+title: Max-Causal-Ent IRL Derivation
 description: A derivation of the maximum causal entropy IRL results. 
 # image: /assets/reinforce_algo_sutton.png # URL to the post's featured image
 # featured: true
 ---
 
-### MCE-IRL Optimization Problem
+### MaxCausalEnt IRL Optimization Problem
 
-We seek a stochastic policy $$\{\pi(a_t\mid s_t)\}_{t=1}^{T-1}$$ given state‐marginal distributions $$\{\rho(s_t)\}_{t=1}^T$$ such that $$\pi$$ has the maximum **causal entropy** subject to matching empirical feature counts and the usual normalization/dynamics constraints. In expectation form, this reads:
+We seek a stochastic policy $$\{\pi(a_t\mid s_t)\}_{t=1}^{T-1}$$ given state‐marginal distributions $$\{\rho(s_t)\}_{t=1}^T$$ such that $$\pi$$ has the maximum **causal entropy** subject to matching empirical feature counts and the usual normalization/dynamics constraints. The optimization problem is as follows:
 
 $$
 \begin{aligned}
@@ -31,7 +31,7 @@ $$
 \\[6pt]
 &\rho(s_t) 
 \;=\; 
-\mathbb{E}_{\substack{s_{t-1}\sim\rho(s_{t-1})\\a_{t-1}\sim\pi(\,\cdot\mid s_{t-1})}}
+\mathbb{E}_{\substack{s_{t-1}\sim\rho(s_{t-1})\\a_{t-1}\sim\pi(a_{t-1}\mid s_{t-1})}}
 \bigl[p\bigl(s_t\mid s_{t-1},\,a_{t-1}\bigr)\bigr]
 \quad\text{for }t=2,\dots,T,
 \\[6pt]
@@ -83,7 +83,7 @@ L
 \theta^\top\Bigl[\,
 \widehat\phi 
 \;-\;\sum_{t=1}^{T-1}\mathbb{E}_{s_t,a_t}[\phi(s_t,a_t)]
-\;-\;\mathbb{E}_{s_T}[\phi(s_T,0)]\Bigr]
+\;-\;\mathbb{E}_{s_T}[\phi(s_T, \cdot)]\Bigr]
 }_{\text{(B) feature‐matching}} 
 \\[6pt]
 &\quad
@@ -125,12 +125,12 @@ $$
    &\theta^\top\Bigl[\,
    \widehat\phi 
    \;-\;\sum_{t=1}^{T-1}\mathbb{E}_{s_t,a_t}[\phi(s_t,a_t)] 
-   \;-\;\mathbb{E}_{s_T}[\phi(s_T,0)]\Bigr]
+   \;-\;\mathbb{E}_{s_T}[\phi(s_T, \cdot)]\Bigr]
    \\[4pt]
    &=\;\theta^\top \widehat\phi 
    \;-\;\theta^\top 
    \sum_{t=1}^{T-1}\sum_{s_t}\rho(s_t)\sum_{a_t}\pi(a_t\mid s_t)\,\phi(s_t,a_t)
-   \;-\;\theta^\top\sum_{s_T}\rho(s_T)\,\phi(s_T,0)
+   \;-\;\theta^\top\sum_{s_T}\rho(s_T)\,\phi(s_T, \cdot)
    \end{aligned}
    $$
 
@@ -139,7 +139,7 @@ $$
    \sum_{t=1}^{T-1}\sum_{s_t} \lambda(s_t)\Bigl[\,1 - \sum_{a_t}\pi(a_t\mid s_t)\Bigr]
    $$
 
-   For each fixed $$t$$ and $$s_t$$, $$\sum_{a_t}\pi(a_t\mid s_t)=1$$ is required.  The term $$\lambda(s_t)\bigl(1 - \sum_{a_t}\pi(a_t\mid s_t)\bigr)$$ enforces that
+   <!-- For each fixed $$t$$ and $$s_t$$, $$\sum_{a_t}\pi(a_t\mid s_t)=1$$ is required.  The term $$\lambda(s_t)\bigl(1 - \sum_{a_t}\pi(a_t\mid s_t)\bigr)$$ enforces that -->
 
 4. **(D) Flow/dynamics for $$t\ge2$$**  
    $$
@@ -201,7 +201,7 @@ $$
 E_{\mathrm{feat},t}
 \;=\;
 -\,\theta^\top 
-\sum_{s_t}\rho(s_t)\sum_{a_t}\pi(a_t\mid s_t)\,\phi(s_t,a_t).
+\sum_{s_t}\rho(s_t)\sum_{a_t}\pi(a_t\mid s_t)\,\phi(s_t,a_t)
 $$
 
 For a fixed $$(s_t,a_t)$$, this is a linear function in $$\pi(a_t\mid s_t)$$.  Hence
@@ -216,7 +216,7 @@ $$
 \boxed{
 \frac{\partial E_{\mathrm{feat},t}}{\partial \pi(a_t\mid s_t)}
 \;=\;
--\,\rho(s_t)\,\bigl[\theta^\top \phi(s_t,a_t)\bigr].
+-\,\rho(s_t)\,\bigl[\theta^\top \phi(s_t,a_t)\bigr]
 }
 $$
 
@@ -324,86 +324,91 @@ $$
 \begin{align}
 &-\,\ln\pi(a_t\mid s_t)\;-\;1\;-\;\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]
 \;=\;\frac{\lambda(s_t)}{\rho(s_t)} \\
-
-&-\,\ln\pi(a_t\mid s_t)\;-\;\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]
-\;=\;C_t(s_t)
+% &-\,\ln\pi(a_t\mid s_t)\;-\;\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]
+% \;=\;C_t(s_t)
 \end{align}
 $$
 
-- or equivalently
+- equivalently
 
 $$
 \ln\pi(a_t\mid s_t)
 \;=\;
 -\,\theta^\top\phi(s_t,a_t)
 \;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]
-\;-\;C_t(s_t)
+\;-\; \Bigl(1 \;+\; \frac{\lambda(s_t)}{\rho(s_t)} \Bigr)
 $$
 
-- Define the normalizer so that $$\pi(\cdot\mid s_t)$$ sums to 1.  In other words,
+- we define the reward function $$r(s_t, a_t) = -\,\theta^\top\phi(s_t,a_t)$$ and name the two terms in the expresssion as $$\tilde{V}(s_t)$$ and $$\tilde{Q}(s_t, a_t)$$. We will later show that these terms are exactly the soft value functions.
+
+$$
+\begin{align}
+\tilde{V}(s_t) &\;\triangleq\; 1 \;+\; \frac{\lambda(s_t)}{\rho(s_t)} \\
+\tilde{Q}(s_t, a_t) &\;\triangleq\; r(s_t, a_t) \;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]
+\end{align}
+$$
+ 
+- following this renaming
 
 $$
 \pi(a_t\mid s_t)
-\;\propto\;
-\exp\Bigl(\,-\,\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[V(s_{t+1})]\Bigr).
-$$
-
-- Concretely, let
-
-$$
-Z_t(s_t)
 \;=\;
-\sum_{a'_t}\exp\Bigl(\,-\,\theta^\top\phi(s_t,a'_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\Bigr).
+\exp \Bigl(\tilde{Q}(s_t, a_t) \;-\; \tilde{V}(s_t) \Bigr)
 $$
 
-This results in the familiar **soft‐value** or “soft‐Bellman” policy:
+
+#### Interpreting Lagrangian Multipliers
+
+- since the policy must satisfy normalization
 
 $$
-\boxed{
 \begin{align}
-\pi(a_t\mid s_t) &\;=\; 
-\frac{
-\exp\Bigl(\,-\,\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\Bigr)
-}
-{
-\displaystyle 
-Z_t(s_t)
-} \\\\
-&\;=\; 
-\frac{
-\exp\bigl(-\,\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\bigr)
-}
-{
-\sum_{a'_t}
-\exp\bigl(-\,\theta^\top\phi(s_t,a'_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\bigr)
-}
+\sum_{a_t \in \mathcal{A}} \pi(a_t\mid s_t) &\;=\; 1 \\
+\sum_{a_t \in \mathcal{A}} \exp \Bigl(\tilde{Q}(s_t, a_t) \;-\; \tilde{V}(s_t) \Bigr) &\;=\; 1 \\
+\exp \tilde{V}(s_t) \cdot \sum_{a_t \in \mathcal{A}} \exp \Bigl(\tilde{Q}(s_t, a_t) \;-\; \tilde{V}(s_t) \Bigr)  &\;=\; \exp \tilde{V}(s_t) \\
+\sum_{a_t \in \mathcal{A}} \exp \tilde{Q}(s_t, a_t)  &\;=\; \exp \tilde{V}(s_t)
 \end{align}
-}
 $$
+
+- equivalently
+
+$$\tilde{V}(s_t) \;=\; \ln \sum_{a_t \in \mathcal{A}} \exp \tilde{Q}(s_t, a_t)$$
+
+- given that $$\tilde{Q}(s_t, a_t) \;\triangleq\; r(s_t, a_t) \;+\;\mathbb{E}_{s_{t+1}}\Bigl[V(s_{t+1})\Bigr]$$ and given the [soft Bellman equations](https://arxiv.org/pdf/1801.01290), it follows that the Lagrangian multiplier $$V(s_t)$$ must be analogous to the term $$\tilde{V}(s_t)$$ which in turn is just the entropy regularised value of the state $$s_t$$. From this it follows that $$\tilde{Q}(s_t, a_t)$$ is the entropy regularised action value.
+
+- finally, we can define $$Z(s_t) = \exp \tilde{V}(s_t) = \sum_{a_t \in \mathcal{A}} \exp \tilde{Q}(s_t, a_t)$$ and the policy can be re-written as
+
+$$
+\pi(a_t\mid s_t) \;=\; \frac{\exp \tilde{Q}(s_t, a_t)}{Z(s_t)}
+$$
+
+- where $$Z(s_t)$$ is the normalizing function that ensures that the the policy is a valid probability distribution.
 
 ---
 
-### 4. Final Result
+### Final Result
 
 $$
+\begin{align}
 \pi(a_t\mid s_t)
-\;\propto\;
-\exp\Bigl(\,-\,\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\Bigr)
+&\;\propto\;
+\exp\Bigl( \tilde{Q}(s_t, a_t) \Bigr) \\
+&\;=\; \frac{\exp \tilde{Q}(s_t, a_t)}{Z(s_t)} \\
+&\;=\; \exp \Bigl(\tilde{Q}(s_t, a_t) \;-\; \tilde{V}(s_t) \Bigr)
+\end{align}
 $$
 
-Further, the dynamics Lagrangian multiplier can be viewed as the soft value function of a state
+Where
 
 $$
+\begin{align}
 V(s_t)
-\;=\;
+&\;=\;
 \ln \sum_{a_t}
-\exp\Bigl(\,-\,\theta^\top\phi(s_t,a_t)\;+\;\mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]\Bigr)
+\exp\Bigl(\tilde{Q}(s_t, a_t)\Bigr) \\
+
+\tilde{Q}(s_t, a_t) &\;=\; r(s_t, a_t) \;+\;\mathbb{E}_{s_{t+1}} \Bigl[\tilde{V}(s_{t+1}) \Bigr] \\
+
+r(s_t, a_t) &\;=\; -\theta^\top\phi(s_t,a_t)
+\end{align}
 $$
-
-With 
-
-$$\pi(a_t\mid s_t) = \exp\bigl(Q_t(s_t,a_t) - V(s_t)\bigr)$$
-
-$$\;Q_t(s_t,a_t) = -\,\theta^\top\phi(s_t,a_t) + \mathbb{E}_{s_{t+1}}[\,V(s_{t+1})\,]$$
-
-$$r(s_t, a_t) = -\,\theta^\top\phi(s_t,a_t)$$
