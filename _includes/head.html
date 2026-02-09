@@ -17,15 +17,86 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
   
+
+
+
+  <style>
+    /* Shared layout: no box, LaTeX-like spacing */
+    .theorem, .definition, .lemma, .corollary, .proposition, .remark, .assumption, .proof {
+      margin: 0.85em 0;      /* vertical whitespace like LaTeX \theoremstyle */
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    /* Header: bold, inline, followed by a period + space */
+    .theorem-title, .definition-title, .lemma-title, .corollary-title,
+    .proposition-title, .remark-title, .assumption-title, .proof-title {
+      display: inline;
+      font-weight: 700;      /* LaTeX-like bold */
+      margin: 0;
+    }
+    .theorem-title::after, .definition-title::after, .lemma-title::after, .corollary-title::after,
+    .proposition-title::after, .remark-title::after, .assumption-title::after, .proof-title::after {
+      content: ".\00a0";      /* ". " */
+      font-weight: 400;
+    }
+
+    /* Make the first paragraph flow inline after the title */
+    .theorem > p, .definition > p, .lemma > p, .corollary > p,
+    .proposition > p, .remark > p, .assumption > p, .proof > p {
+      display: inline;
+      margin: 0;
+    }
+
+    /* ICLR-like: statement text in italics for theorem-like envs (including definitions/assumptions as in the example PDF) */
+    .theorem, .definition, .lemma, .corollary, .proposition, .assumption {
+      font-style: italic;
+    }
+
+    /* Remarks are typically roman (often “Remark.” then roman text) */
+    .remark {
+      font-style: normal;
+    }
+
+    /* Proof: label italic, body roman */
+    .proof-title { font-style: italic; }
+    .proof { font-style: normal; }
+
+    /* Example lines inside an italic statement: "Example:" italic label, roman content */
+    .example-label { font-style: italic; }
+    .example-body  { font-style: normal; }
+
+    /* Optional QED box */
+    .qed { float: right; }
+  </style>
+
+
+  <style>
+    .theorem:target, .definition:target, .lemma:target, .corollary:target,
+    .proposition:target, .remark:target, .assumption:target, .proof:target {
+      background: rgba(255, 230, 150, 0.35);
+      scroll-margin-top: 80px; /* helpful if you have a fixed header */
+      transition: background 0.3s ease;
+    }
+  </style>
+
+
+
+
+
+
   <!-- math rendering -->
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
-    MathJax = {
+    window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
       }
     };
   </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
   <!-- 100% privacy-first analytics -->
   <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
