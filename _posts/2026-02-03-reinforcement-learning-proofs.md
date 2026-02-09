@@ -1,6 +1,6 @@
 ---
 layout: post
-category: npublished
+category: unpublished
 title: A blueprint for reinforcement learning proofs
 description: A tutorial on common proof themes and popular results in RL.
 featured: true
